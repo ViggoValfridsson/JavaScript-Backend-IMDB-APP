@@ -72,20 +72,6 @@ section > h2 {
   margin-bottom: 2rem;
 }
 
-.text-light {
-  color: var(--color-light);
-}
-
-a {
-  color: var(--color-primary);
-  transition: var(--transition);
-}
-
-a:hover,
-a:focus {
-  color: var(--color-white);
-}
-
 .btn {
   width: max-content;
   display: inline-block;

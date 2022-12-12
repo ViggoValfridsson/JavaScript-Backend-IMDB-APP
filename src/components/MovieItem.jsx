@@ -1,5 +1,6 @@
-import React from "react";
 import { AiOutlineStar } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import classes from "./MovieItem.module.css";
 
 const MovieItem = ({ movie }) => {
   let movieName = "";
@@ -13,18 +14,20 @@ const MovieItem = ({ movie }) => {
 
   console.log(movie);
   return (
-    <div>
-      <div className="image">
-        <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} alt="" />
+    <Link to={"movie/" + movie.id}>
+      <div className={classes.movieCard}>
+        <div className={classes.image}>
+          <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} alt="" />
+        </div>
+        <div className={classes.content}>
+          <h3>{movieName}</h3>
+          <div className={classes.ratingContainer}>
+            <AiOutlineStar className={classes.icon} />
+            <h4 className={classes.ratingText}>{movie.vote_average.toFixed(1)}</h4>
+          </div>
+        </div>
       </div>
-      <div className="content">
-        <h3>{movieName}</h3>
-        <h4>
-          <AiOutlineStar />
-          {movie.vote_average}
-        </h4>
-      </div>
-    </div>
+    </Link>
   );
 };
 
