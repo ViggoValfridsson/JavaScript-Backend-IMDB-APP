@@ -1,0 +1,21 @@
+.movies {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 50%;
+  gap: 1rem;
+  overflow: scroll;
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  .movies {
+    grid-auto-columns: 33%;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .movies {
+    grid-auto-columns: 24%;
+  }
+}
