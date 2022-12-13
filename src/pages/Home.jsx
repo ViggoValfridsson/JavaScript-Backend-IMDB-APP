@@ -14,7 +14,6 @@ const Home = () => {
         <MovieRow title={"Trending TV shows"} url={trendingShowsUrl} typeOfMedia={"tv"} />
         <MovieRow title={"Top rated movies"} url={topRatedUrl} typeOfMedia={"movie"} />
         <MovieRow title={"Top rated TV shows"} url={topRatedTVUrl} typeOfMedia={"tv"} />
-
       </div>
     </section>
   );
