@@ -1,9 +1,10 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import MovieItem from "./MovieItem";
 import classes from "./MovieRow.module.css";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
-
+import { RxDividerVertical } from "react-icons/rx";
 const MovieRow = ({ title, url }) => {
   const { data, isPending, error } = useFetch(url);
   const movieRow = useRef();
@@ -50,7 +51,10 @@ const MovieRow = ({ title, url }) => {
 
   return (
     <div>
-      <h2>{title}</h2>
+      <Link to="/trending" className={classes.headingContainer}>
+        <RxDividerVertical className={classes.headingIcon} />
+        <h2>{title}</h2>
+      </Link>
       {isPending && <p>Loading...</p>}
       {error && <p>Something went wrong</p>}
       <div className={classes.movieButtonContainer}>

@@ -8,6 +8,29 @@
   overflow: hidden;
 }
 
+.headingContainer {
+  display: flex;
+  align-items: center;
+  color: var(--color-white);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  padding-right: 1rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 1px solid transparent;
+  border-radius: 0.3rem;
+}
+
+.headingContainer:hover,
+.headingContainer:focus {
+  border-color: var(--color-primary);
+}
+
+.headingIcon {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+}
+
 .movies {
   display: grid;
   grid-auto-flow: column;
@@ -30,6 +53,7 @@
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
 
 .scrollRight {
   right: 0;
