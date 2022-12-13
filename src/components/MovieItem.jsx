@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import classes from "./MovieItem.module.css";
