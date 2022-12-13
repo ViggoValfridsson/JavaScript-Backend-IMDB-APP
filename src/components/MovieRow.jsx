@@ -51,7 +51,7 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
 
   return (
     <div>
-      <Link to={`/${title.replace(/\s/g, "").toLowerCase()}`} className={classes.headingContainer}>
+      <Link to={`/${title.replace(/\s/g, "_").toLowerCase()}`} className={classes.headingContainer}>
         <RxDividerVertical className={classes.headingIcon} />
         <h2>{title}</h2>
       </Link>
