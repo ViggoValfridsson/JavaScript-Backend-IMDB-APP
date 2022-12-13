@@ -1,9 +1,13 @@
 .movies {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 50%;
+  grid-auto-columns: 48%;
   gap: 1rem;
   overflow: scroll;
+}
+
+.movies h3 {
+  font-size: 1rem
 }
 
 /* Tablet */
@@ -11,11 +15,16 @@
   .movies {
     grid-auto-columns: 33%;
   }
+
 }
 
 /* Desktop */
-@media (min-width: 1024px) {
+@media (min-width: 1224px) {
   .movies {
-    grid-auto-columns: 24%;
+    grid-auto-columns: 23%;
+  }
+
+  .movies h3 {
+    font-size: 1.2rem
   }
 }
