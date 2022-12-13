@@ -1,0 +1,30 @@
+.movieCard {
+  display: inline-block;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: var(--color-bg-variant);
+}
+
+.content {
+  height: 10rem;
+  padding: 1.5rem 1rem 0 1rem;
+  color: var(--color-white);
+}
+
+.ratingContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.icon {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+}
+
+.ratingText {
+  width: -moz-fit-content;
+  width: fit-content;
+}

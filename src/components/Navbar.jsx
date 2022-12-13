@@ -1,5 +1,5 @@
 import classes from "./Navbar.module.css";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 
