@@ -5,7 +5,7 @@ import MovieItem from "./MovieItem";
 import classes from "./MovieRow.module.css";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { RxDividerVertical } from "react-icons/rx";
-const MovieRow = ({ title, url }) => {
+const MovieRow = ({ title, url, typeOfMedia }) => {
   const { data, isPending, error } = useFetch(url);
   const movieRow = useRef();
   let moviePlacement = 0;
@@ -51,7 +51,7 @@ const MovieRow = ({ title, url }) => {
 
   return (
     <div>
-      <Link to="/trending" className={classes.headingContainer}>
+      <Link to={`/${title.replace(/\s/g, "").toLowerCase()}`} className={classes.headingContainer}>
         <RxDividerVertical className={classes.headingIcon} />
         <h2>{title}</h2>
       </Link>
@@ -67,7 +67,7 @@ const MovieRow = ({ title, url }) => {
         <div className={classes.movies} ref={movieRow}>
           {data &&
             data.results.map((movie) => {
-              return <MovieItem placement={moviePlacement++} key={movie.id} movie={movie} />;
+              return <MovieItem placement={moviePlacement++} key={movie.id} movie={movie} typeOfMedia={typeOfMedia}/>;
             })}
         </div>
       </div>

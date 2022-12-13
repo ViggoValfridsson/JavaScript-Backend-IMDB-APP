@@ -2,7 +2,7 @@ import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import classes from "./MovieItem.module.css";
 
-const MovieItem = ({ movie, placement }) => {
+const MovieItem = ({ movie, placement, typeOfMedia }) => {
   const getMovieName = () => {
     let name;
 
@@ -20,7 +20,7 @@ const MovieItem = ({ movie, placement }) => {
   };
 
   return (
-    <Link to={"movie/" + movie.id} className={`placement-${placement} ${classes.movieCard}`}>
+    <Link to={typeOfMedia + "/" + movie.id} className={`placement-${placement} ${classes.movieCard}`}>
       <div className={classes.image}>
         <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} alt="" />
       </div>
