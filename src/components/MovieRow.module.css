@@ -22,7 +22,7 @@
 
 .scroll {
   background-color: rgba(8, 8, 8, 0.8);
-  padding: 1.3rem;
+  padding: 0.2rem;
   z-index: 1;
   position: absolute;
   height: 100%;
@@ -44,12 +44,21 @@
   .movies {
     grid-auto-columns: 33%;
   }
+  .scroll {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 850px) {
+  .movies {
+    grid-auto-columns: 23%;
+  }
 }
 
 /* Desktop */
 @media (min-width: 1224px) {
   .movies {
-    grid-auto-columns: 23%;
+    grid-auto-columns: 19%;
   }
 
   .movies h3 {

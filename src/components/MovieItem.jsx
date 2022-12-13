@@ -3,14 +3,21 @@ import { Link } from "react-router-dom";
 import classes from "./MovieItem.module.css";
 
 const MovieItem = ({ movie }) => {
-  let movieName = "";
+  const getMovieName = () => {
+    let name;
 
-  if (movie.name) {
-    movieName = movie.name;
-  }
-  if (movie.title) {
-    movieName = movie.title;
-  }
+    if (movie.name) {
+      name = movie.name;
+    } else {
+      name = movie.title;
+    }
+
+    if (name > 35) {
+      name = name.slice(0, 35) + "...";
+    }
+
+    return name;
+  };
 
   return (
     <Link to={"movie/" + movie.id} className={classes.movieCard}>
@@ -22,7 +29,7 @@ const MovieItem = ({ movie }) => {
           <AiFillStar className={classes.icon} />
           <h4 className={classes.ratingText}>{movie.vote_average.toFixed(1)}</h4>
         </div>
-        <h3>{movieName}</h3>
+        <h3>{getMovieName()}</h3>
       </div>
     </Link>
   );

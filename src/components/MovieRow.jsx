@@ -6,7 +6,6 @@ import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 const MovieRow = ({ title, url }) => {
   const { data, isPending, error } = useFetch(url);
 
-  //Fixa scroll button
 
   return (
     <div>
