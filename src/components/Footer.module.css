@@ -8,6 +8,26 @@
 }
 
 .footerHeader {
-  font-size: 2rem;
-  font-weight: 300;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (min-width: 370px) {
+  .footerHeader {
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+}
+
+@media (min-width: 600px) {
+  .footerHeader {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footerHeader {
+    font-size: 2rem;
+  }
 }

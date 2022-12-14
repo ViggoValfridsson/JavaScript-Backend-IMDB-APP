@@ -87,17 +87,17 @@
   }
 
   .movies h3 {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
   }
 }
 
-@media (min-width: 1450px) {
+@media (min-width: 1650px) {
   .movies {
     grid-auto-columns: 13%;
   }
 
   .movies h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 
