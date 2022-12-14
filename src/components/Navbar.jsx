@@ -26,7 +26,7 @@ const Navbar = () => {
         <nav className={classes.nav}>
           <form onSubmit={handleSubmit}>
             <div className={classes.searchInputGroup}>
-              <input type="text" ref={searchRef} className={classes.searchInput} placeholder="Search database" />
+              <input type="text" ref={searchRef} className={classes.searchInput} placeholder="Search..." />
               <button className={classes.iconButton}>
                 <BiSearch className={classes.icon} />
               </button>

@@ -12,25 +12,27 @@ const MovieItem = ({ movie, placement, typeOfMedia }) => {
       name = movie.title;
     }
 
-    if (name > 35) {
-      name = name.slice(0, 35) + "...";
+    if (name.length > 30) {
+      name = name.slice(0, 30) + "...";
     }
 
     return name;
   };
 
   return (
-    <Link to={typeOfMedia + "/" + movie.id} className={`placement-${placement} ${classes.movieCard}`}>
-      <div className={classes.image}>
-        <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} alt="" />
-      </div>
-      <div className={classes.content}>
-        <div className={classes.ratingContainer}>
-          <AiFillStar className={classes.icon} />
-          <h4 className={classes.ratingText}>{movie.vote_average.toFixed(1)}</h4>
+    <Link to={"media/" + typeOfMedia + "/" + movie.id} className={`placement-${placement} ${classes.movieCard}`}>
+      <article>
+        <div className={classes.image}>
+          <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} alt={"Poster of " + getMovieName()} />
         </div>
-        <h3>{getMovieName()}</h3>
-      </div>
+        <div className={classes.content}>
+          <div className={classes.ratingContainer}>
+            <AiFillStar className={classes.icon} />
+            <h4 className={classes.ratingText}>{movie.vote_average.toFixed(1)}</h4>
+          </div>
+          <h3>{getMovieName()}</h3>
+        </div>
+      </article>
     </Link>
   );
 };
