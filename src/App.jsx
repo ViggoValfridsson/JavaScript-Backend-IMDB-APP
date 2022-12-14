@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import classes from "./App.module.css";
 import MovieShowPage from "./pages/MovieShowPage";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
           <main className={classes.main}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/media/:media/:id" element={<MovieShowPage/>} />
+              <Route path="/media/:media/:id" element={<MovieShowPage />} />
+              <Route path="/search/:query" element={<Search />} />
             </Routes>
           </main>
           <Footer />

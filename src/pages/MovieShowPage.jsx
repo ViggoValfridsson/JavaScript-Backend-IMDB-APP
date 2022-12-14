@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import classes from "./MovieShowPage.module.css";
 import { AiFillStar } from "react-icons/ai";
+import image_not_found from "../images/image_not_found.png";
 
 const MovieShowPage = () => {
   const { media, id } = useParams();
@@ -110,10 +111,13 @@ const MovieShowPage = () => {
         </div>
         <div className={classes.content}>
           <div className={classes.posterAndTrailer}>
-            <img
-              src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${data.poster_path}`}
-              alt={"Poster for " + getMovieName()}
-            />
+            {data.poster_path && (
+              <img
+                src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${data.poster_path}`}
+                alt={"Poster for " + getMovieName()}
+              />
+            )}
+            {!data.poster_path && <img src={image_not_found} alt={"Could not find poster for " + getMovieName()} />}
             <div className={classes.iframeContainer}>
               <iframe
                 className={classes.trailer}

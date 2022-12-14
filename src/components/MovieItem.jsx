@@ -1,6 +1,7 @@
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import classes from "./MovieItem.module.css";
+import image_not_found from "../images/image_not_found.png";
 
 const MovieItem = ({ movie, placement, typeOfMedia }) => {
   const getMovieName = () => {
@@ -20,10 +21,16 @@ const MovieItem = ({ movie, placement, typeOfMedia }) => {
   };
 
   return (
-    <Link to={"media/" + typeOfMedia + "/" + movie.id} className={`placement-${placement} ${classes.movieCard}`}>
+    <Link to={"/media/" + typeOfMedia + "/" + movie.id} className={`placement-${placement} ${classes.movieCard}`}>
       <article>
         <div className={classes.image}>
-          <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} alt={"Poster for " + getMovieName()} />
+          {movie.poster_path && (
+            <img
+              src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`}
+              alt={"Poster for " + getMovieName()}
+            />
+          )}
+          {!movie.poster_path && <img src={image_not_found} alt={"Could not find poster for " + getMovieName()} />}
         </div>
         <div className={classes.content}>
           <div className={classes.ratingContainer}>

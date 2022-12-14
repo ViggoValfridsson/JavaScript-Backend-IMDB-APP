@@ -13,7 +13,7 @@ const Navbar = () => {
     if (!searchRef.current.value) {
       navigate("/");
     } else {
-      navigate(`/search/${searchRef.current.value}`);
+      navigate(`/search/${searchRef.current.value.replace(/\s/g, "_")}`);
     }
   };
 
