@@ -15,6 +15,25 @@ const MovieShowPage = () => {
   } = useFetch(
     ` https://api.themoviedb.org/3/${media}/${id}/credits?api_key=f7f5e53209dd58bafcd025bff2a1e966&language=en-US`
   );
+  const {
+    data: trailers,
+    isPending: trailerIsPending,
+    error: trailerError,
+  } = useFetch(
+    `https://api.themoviedb.org/3/${media}/${id}/videos?api_key=f7f5e53209dd58bafcd025bff2a1e966&language=en-US`
+  );
+
+  const getMovieName = () => {
+    let name;
+
+    if (data.name) {
+      name = data.name;
+    } else {
+      name = data.title;
+    }
+
+    return name;
+  };
 
   const getDirector = () => {
     const director = credits.crew.find((crew) => crew.known_for_department === "Directing");
@@ -43,16 +62,14 @@ const MovieShowPage = () => {
     return shortActorArray;
   };
 
-  const getMovieName = () => {
-    let name;
+  const getTrailerLink = () => {
+    const youtubeTrailer = trailers.results.find((trailer) => trailer.site === "YouTube");
 
-    if (data.name) {
-      name = data.name;
-    } else {
-      name = data.title;
+    if (!youtubeTrailer) {
+      return null;
     }
 
-    return name;
+    return `https://www.youtube.com/embed/${youtubeTrailer.key}`;
   };
 
   const convertToHoursAndMin = (totalMinutes) => {
@@ -62,11 +79,11 @@ const MovieShowPage = () => {
     return `${hours}h ${minutes}m`;
   };
 
-  if (isPending || creditsIsPending) {
+  if (isPending || creditsIsPending || trailerIsPending) {
     return <div>Loading...</div>;
   }
 
-  if (error || creditsError) {
+  if (error || creditsError || trailerError) {
     return <div>Could not find</div>;
   }
 
@@ -86,33 +103,48 @@ const MovieShowPage = () => {
           </div>
           {data.runtime && <h3>{convertToHoursAndMin(data.runtime)}</h3>}
         </div>
-        <div className={classes.imagesAndVideos}>
-          <img
-            src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${data.poster_path}`}
-            alt={"Poster of " + getMovieName()}
-          />
-        </div>
-        <div className="content">
-          {data.genres.map((genre) => {
-            return (
-              <div className={classes.genre} key={genre.name}>
-                {genre.name}
-              </div>
-            );
-          })}
+
+        <div className={classes.content}>
+          <div className={classes.posterAndTrailer}>
+            <img
+              src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${data.poster_path}`}
+              alt={"Poster for " + getMovieName()}
+            />
+            <div className={classes.iframeContainer}>
+              <iframe
+                className={classes.trailer}
+                src={getTrailerLink()}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+          <div className={classes.genreContainer}>
+            {data.genres.map((genre) => {
+              return (
+                <div className={classes.genre} key={genre.name}>
+                  {genre.name}
+                </div>
+              );
+            })}
+          </div>
           <p className={classes.description}>{data.overview}</p>
           <div className={classes.castAndCrew}>
             {media === "movie" && (
-              <div className={classes.directorRow}>
-                <h4>{getDirector()}</h4>
+              <div className={`${classes.directorRow} ${classes.row}`}>
+                <h4>Director:</h4>
+                <address rel="author">{getDirector()}</address>
               </div>
             )}
-            <div className={classes.actorRow}>
+            <div className={`${classes.actorRow} ${classes.row}`}>
+              <h4>Starring:</h4>
+
               {getActors().map((actor) => {
                 return (
                   <div className={classes.actor} key={actor.name}>
-                    <h4>{actor.name}</h4>
-                    <h5>{actor.character}</h5>
+                    <address rel="author">{actor.name}:</address>
+                    <p>{actor.character}</p>
                   </div>
                 );
               })}

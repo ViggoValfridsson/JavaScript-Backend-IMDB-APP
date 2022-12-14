@@ -22,7 +22,7 @@
   --color-primary: #f5c518;
   --color-primary-variant: #f0c60c;
   --color-white: #e7dfdd;
-  --color-light: rgba(231, 223, 221, 0.6);
+  --color-light: rgba(231, 223, 221, 0.8);
 
   --transition: all 400ms ease;
 
@@ -60,7 +60,7 @@ h1 {
 }
 
 section {
-  margin-top: 4rem;
+  margin-top: 2.5rem;
 }
 
 section > h2,

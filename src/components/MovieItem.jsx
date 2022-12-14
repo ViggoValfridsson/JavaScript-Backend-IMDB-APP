@@ -23,7 +23,7 @@ const MovieItem = ({ movie, placement, typeOfMedia }) => {
     <Link to={"media/" + typeOfMedia + "/" + movie.id} className={`placement-${placement} ${classes.movieCard}`}>
       <article>
         <div className={classes.image}>
-          <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} alt={"Poster of " + getMovieName()} />
+          <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`} alt={"Poster for " + getMovieName()} />
         </div>
         <div className={classes.content}>
           <div className={classes.ratingContainer}>
