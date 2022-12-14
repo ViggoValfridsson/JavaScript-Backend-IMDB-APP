@@ -14,6 +14,7 @@ const Navbar = () => {
       navigate("/");
     } else {
       navigate(`/search/${searchRef.current.value.replace(/\s/g, "_")}`);
+      searchRef.current.value = ""
     }
   };
 
