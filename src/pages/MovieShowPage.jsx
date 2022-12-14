@@ -24,7 +24,7 @@ const MovieShowPage = () => {
   );
 
   const getMovieName = () => {
-    let name;
+    let name = "";
 
     if (data.name) {
       name = data.name;
@@ -37,6 +37,11 @@ const MovieShowPage = () => {
 
   const getDirector = () => {
     const director = credits.crew.find((crew) => crew.known_for_department === "Directing");
+
+    if (!director) {
+      return "";
+    }
+
     return director.name;
   };
 
@@ -103,7 +108,6 @@ const MovieShowPage = () => {
           </div>
           {data.runtime && <h3>{convertToHoursAndMin(data.runtime)}</h3>}
         </div>
-
         <div className={classes.content}>
           <div className={classes.posterAndTrailer}>
             <img
@@ -121,13 +125,14 @@ const MovieShowPage = () => {
             </div>
           </div>
           <div className={classes.genreContainer}>
-            {data.genres.map((genre) => {
-              return (
-                <div className={classes.genre} key={genre.name}>
-                  {genre.name}
-                </div>
-              );
-            })}
+            {data.genres &&
+              data.genres.map((genre) => {
+                return (
+                  <div className={classes.genre} key={genre.name}>
+                    {genre.name}
+                  </div>
+                );
+              })}
           </div>
           <p className={classes.description}>{data.overview}</p>
           <div className={classes.castAndCrew}>
@@ -139,15 +144,18 @@ const MovieShowPage = () => {
             )}
             <div className={`${classes.actorRow} ${classes.row}`}>
               <h4>Starring:</h4>
-
-              {getActors().map((actor) => {
-                return (
-                  <div className={classes.actor} key={actor.name}>
-                    <address rel="author">{actor.name}:</address>
-                    <p>{actor.character}</p>
-                  </div>
-                );
-              })}
+              {getActors() &&
+                getActors().map((actor) => {
+                  if (!actor) {
+                    return null;
+                  }
+                  return (
+                    <div className={classes.actor} key={actor.name}>
+                      <address rel="author">{actor.name}:</address>
+                      <p>{actor.character}</p>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
