@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
 import MovieItem from "./MovieItem";
+import useFetch from "../hooks/useFetch";
 import classes from "./MovieRow.module.css";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { RxDividerVertical } from "react-icons/rx";
@@ -23,6 +23,9 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
   };
 
   const handleClick = (direction) => {
+    if (!data) {
+      return;
+    }
     const columnWidth = movieRow.current.scrollWidth / data.results.length;
     const currentColumn = Math.round(movieRow.current.scrollLeft / columnWidth);
     const amountOfVisibleMovies = Math.round(movieRow.current.getBoundingClientRect().width / columnWidth);
@@ -50,14 +53,17 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
     }
   };
 
+  const loadingCardAmount = 8;
+
   return (
     <div>
       <Link to={`/${title.replace(/\s/g, "_").toLowerCase()}`} className={classes.headingContainer}>
         <RxDividerVertical className={classes.headingIcon} />
         <h2>{title}</h2>
       </Link>
-      {isPending && <p>Loading...</p>}
+
       {error && <p>Something went wrong</p>}
+
       <div className={classes.movieButtonContainer}>
         <button onClick={() => handleClick("left")} className={`${classes.scroll} ${classes.scrollLeft}`}>
           <BiLeftArrow className={classes.icon} />
@@ -66,6 +72,9 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
           <BiRightArrow className={classes.icon} />
         </button>
         <div className={classes.movies} ref={movieRow}>
+          {isPending && <MovieItem typeOfMedia={"loading"} />}
+          {isPending && [...Array(loadingCardAmount)].map((e, i) => <MovieItem typeOfMedia={"loading"} key={i} />)}
+
           {data &&
             data.results.map((movie) => {
               return <MovieItem placement={moviePlacement++} key={movie.id} movie={movie} typeOfMedia={typeOfMedia} />;
