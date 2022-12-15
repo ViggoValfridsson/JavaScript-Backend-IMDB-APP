@@ -9,6 +9,7 @@ import ErrorMessage from "./ErrorMessage";
 
 const MovieRow = ({ title, url, typeOfMedia }) => {
   const { data, isPending, error } = useFetch(url);
+  const loadingCardAmount = 8;
   const movieRow = useRef();
   let moviePlacement = 0;
 
@@ -54,7 +55,20 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
     }
   };
 
-  const loadingCardAmount = 8;
+  const noMoviesFound = () => {
+    if (!data) {
+      return false;
+    }
+
+    if (data.results.length === 0) {
+      return true;
+    }
+
+    return false;
+  };
+
+  console.log(data);
+  console.log(noMoviesFound());
 
   return (
     <div>
@@ -62,25 +76,39 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
         <RxDividerVertical className={classes.headingIcon} />
         <h2>{title}</h2>
       </Link>
-
+      {noMoviesFound() && (
+          <div className={classes.errorContainer}>
+            <h3>Your search gave no results</h3>
+            <h4>Possible solutions:</h4>
+            <ul>
+              <li>Check if your spelling is correct</li>
+              <li>Try other search words</li>
+              <li>Maybe there is an alternative title to the movie/show</li>
+            </ul>
+          </div>
+      )}
       {error && <ErrorMessage />}
 
-      <div className={classes.movieButtonContainer}>
-        <button onClick={() => handleClick("left")} className={`${classes.scroll} ${classes.scrollLeft}`}>
-          <BiLeftArrow className={classes.icon} />
-        </button>
-        <button onClick={() => handleClick("right")} className={`${classes.scroll} ${classes.scrollRight}`}>
-          <BiRightArrow className={classes.icon} />
-        </button>
-        <div className={classes.movies} ref={movieRow}>
-          {isPending && [...Array(loadingCardAmount)].map((e, i) => <MovieItem typeOfMedia={"loading"} key={i} />)}
+      {!error && !noMoviesFound() && (
+        <div className={classes.movieButtonContainer}>
+          <button onClick={() => handleClick("left")} className={`${classes.scroll} ${classes.scrollLeft}`}>
+            <BiLeftArrow className={classes.icon} />
+          </button>
+          <button onClick={() => handleClick("right")} className={`${classes.scroll} ${classes.scrollRight}`}>
+            <BiRightArrow className={classes.icon} />
+          </button>
+          <div className={classes.movies} ref={movieRow}>
+            {isPending && [...Array(loadingCardAmount)].map((e, i) => <MovieItem typeOfMedia={"loading"} key={i} />)}
 
-          {data &&
-            data.results.map((movie) => {
-              return <MovieItem placement={moviePlacement++} key={movie.id} movie={movie} typeOfMedia={typeOfMedia} />;
-            })}
+            {data &&
+              data.results.map((movie) => {
+                return (
+                  <MovieItem placement={moviePlacement++} key={movie.id} movie={movie} typeOfMedia={typeOfMedia} />
+                );
+              })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

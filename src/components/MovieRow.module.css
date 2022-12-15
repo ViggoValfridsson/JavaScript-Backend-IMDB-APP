@@ -32,6 +32,23 @@
   color: var(--color-primary);
 }
 
+.errorContainer h3 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 1rem;
+}
+
+.errorContainer h4 {
+  margin: 0 0 0.5rem 1rem;
+}
+
+.errorContainer ul {
+  margin-left: 2rem;
+}
+
+.errorContainer li {
+  list-style: disc;
+}
+
 .movies {
   display: grid;
   min-width: 100%;
