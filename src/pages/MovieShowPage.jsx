@@ -4,6 +4,7 @@ import classes from "./MovieShowPage.module.css";
 import { AiFillStar } from "react-icons/ai";
 import { CircularProgress } from "@mui/material";
 import image_not_found from "../images/image_not_found.png";
+import ErrorMessage from "../components/ErrorMessage";
 
 const MovieShowPage = () => {
   const { media, id } = useParams();
@@ -93,7 +94,7 @@ const MovieShowPage = () => {
     return false;
   };
 
-  const checkError = () => {
+  const errorHasOccured = () => {
     if (error || creditsError || trailerError) {
       return true;
     }
@@ -103,12 +104,17 @@ const MovieShowPage = () => {
   return (
     <section>
       <div className="container">
-        {isLoading() && (
-          <div className={classes.spinnerContainer}>
-            <CircularProgress className={classes.spinner} color="inherit" size="10rem"/>
+        {errorHasOccured() && (
+          <div className={classes.errorContainer}>
+            <ErrorMessage />
           </div>
         )}
-        {!isLoading() && (
+        {isLoading() && (
+          <div className={classes.spinnerContainer}>
+            <CircularProgress className={classes.spinner} color="inherit" size="10rem" />
+          </div>
+        )}
+        {!isLoading() && !errorHasOccured() && (
           <div className={classes.header}>
             <h2>{getMovieName()}</h2>
             <div>
@@ -123,7 +129,7 @@ const MovieShowPage = () => {
             {data.runtime && <h3>{convertToHoursAndMin(data.runtime)}</h3>}
           </div>
         )}
-        {!isLoading() && (
+        {!isLoading() && !errorHasOccured() && (
           <div className={classes.content}>
             <div className={classes.posterAndTrailer}>
               {data.poster_path && (

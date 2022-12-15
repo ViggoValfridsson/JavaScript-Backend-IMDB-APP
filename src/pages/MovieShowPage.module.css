@@ -6,6 +6,9 @@
   height: 55vh;
 }
 
+.errorContainer {
+}
+
 .header {
   padding: 1rem 0;
   display: grid;
@@ -133,6 +136,9 @@
 
 /* Tablet */
 @media (min-width: 600px) {
+  .errorContainer {
+    margin-top: 5rem;
+  }
   .header {
     grid-template-columns: 2fr 1fr;
   }

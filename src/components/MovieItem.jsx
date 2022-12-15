@@ -20,7 +20,7 @@ const MovieItem = ({ movie, placement, typeOfMedia, width }) => {
 
     return name;
   };
-
+  
   if (typeOfMedia === "loading") {
     return (
       <Skeleton
@@ -28,7 +28,7 @@ const MovieItem = ({ movie, placement, typeOfMedia, width }) => {
         sx={{ bgcolor: "grey.900" }}
         variant="rectangular"
         width={"100%"}
-        height={437}
+        height={447}
       ></Skeleton>
     );
   }
