@@ -2,8 +2,9 @@ import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import classes from "./MovieItem.module.css";
 import image_not_found from "../images/image_not_found.png";
+import { Skeleton } from "@mui/material";
 
-const MovieItem = ({ movie, placement, typeOfMedia }) => {
+const MovieItem = ({ movie, placement, typeOfMedia, width }) => {
   const getMovieName = () => {
     let name;
 
@@ -19,6 +20,18 @@ const MovieItem = ({ movie, placement, typeOfMedia }) => {
 
     return name;
   };
+  
+  if (typeOfMedia === "loading") {
+    return (
+      <Skeleton
+        className={classes.loadingCard}
+        sx={{ bgcolor: "grey.900" }}
+        variant="rectangular"
+        width={"100%"}
+        height={447}
+      ></Skeleton>
+    );
+  }
 
   return (
     <Link to={"/media/" + typeOfMedia + "/" + movie.id} className={`placement-${placement} ${classes.movieCard}`}>
