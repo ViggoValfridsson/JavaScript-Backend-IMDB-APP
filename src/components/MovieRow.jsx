@@ -67,9 +67,6 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
     return false;
   };
 
-  console.log(data);
-  console.log(noMoviesFound());
-
   return (
     <div>
       <Link to={`/${title.replace(/\s/g, "_").toLowerCase()}`} className={classes.headingContainer}>
@@ -77,18 +74,17 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
         <h2>{title}</h2>
       </Link>
       {noMoviesFound() && (
-          <div className={classes.errorContainer}>
-            <h3>Your search gave no results</h3>
-            <h4>Possible solutions:</h4>
-            <ul>
-              <li>Check if your spelling is correct</li>
-              <li>Try other search words</li>
-              <li>Maybe there is an alternative title to the movie/show</li>
-            </ul>
-          </div>
+        <div className={classes.errorContainer}>
+          <h3>Your search gave no results</h3>
+          <h4>Possible solutions:</h4>
+          <ul>
+            <li>Check if your spelling is correct</li>
+            <li>Try other search words</li>
+            <li>Maybe there is an alternative title to the movie/show</li>
+          </ul>
+        </div>
       )}
       {error && <ErrorMessage />}
-
       {!error && !noMoviesFound() && (
         <div className={classes.movieButtonContainer}>
           <button onClick={() => handleClick("left")} className={`${classes.scroll} ${classes.scrollLeft}`}>
