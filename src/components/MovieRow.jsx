@@ -5,6 +5,7 @@ import useFetch from "../hooks/useFetch";
 import classes from "./MovieRow.module.css";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { RxDividerVertical } from "react-icons/rx";
+import ErrorMessage from "./ErrorMessage";
 
 const MovieRow = ({ title, url, typeOfMedia }) => {
   const { data, isPending, error } = useFetch(url);
@@ -62,7 +63,7 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
         <h2>{title}</h2>
       </Link>
 
-      {error && <h3 className={classes.error}>Something went wrong when loading. Try reloading the page!</h3>}
+      {error && <ErrorMessage />}
 
       <div className={classes.movieButtonContainer}>
         <button onClick={() => handleClick("left")} className={`${classes.scroll} ${classes.scrollLeft}`}>

@@ -1,0 +1,9 @@
+.error {
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 1px solid red;
+  border-radius: 1rem;
+  padding: 0.5rem 2rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
