@@ -62,7 +62,7 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
         <h2>{title}</h2>
       </Link>
 
-      {error && <p>Something went wrong</p>}
+      {error && <h3 className={classes.error}>Something went wrong when loading. Try reloading the page!</h3>}
 
       <div className={classes.movieButtonContainer}>
         <button onClick={() => handleClick("left")} className={`${classes.scroll} ${classes.scrollLeft}`}>
@@ -72,7 +72,6 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
           <BiRightArrow className={classes.icon} />
         </button>
         <div className={classes.movies} ref={movieRow}>
-          {isPending && <MovieItem typeOfMedia={"loading"} />}
           {isPending && [...Array(loadingCardAmount)].map((e, i) => <MovieItem typeOfMedia={"loading"} key={i} />)}
 
           {data &&
