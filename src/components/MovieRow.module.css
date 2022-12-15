@@ -34,6 +34,7 @@
 
 .movies {
   display: grid;
+  min-width: 100%;
   grid-auto-flow: column;
   grid-auto-columns: 48%;
   gap: 1rem;
