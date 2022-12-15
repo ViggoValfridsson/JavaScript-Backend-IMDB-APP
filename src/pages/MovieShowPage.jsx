@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import classes from "./MovieShowPage.module.css";
 import { AiFillStar } from "react-icons/ai";
+import { CircularProgress } from "@mui/material";
 import image_not_found from "../images/image_not_found.png";
 
 const MovieShowPage = () => {
@@ -85,14 +86,7 @@ const MovieShowPage = () => {
     return `${hours}h ${minutes}m`;
   };
 
-  const checkLoaded = () => {
-    if (data && credits && trailers) {
-      return true;
-    }
-    return false;
-  };
-
-  const checkPending = () => {
+  const isLoading = () => {
     if (isPending || creditsIsPending || trailerIsPending) {
       return true;
     }
@@ -109,8 +103,12 @@ const MovieShowPage = () => {
   return (
     <section>
       <div className="container">
-        {checkPending() && <p>Loading</p>}
-        {checkLoaded() && (
+        {isLoading() && (
+          <div className={classes.spinnerContainer}>
+            <CircularProgress className={classes.spinner} color="inherit" size="10rem"/>
+          </div>
+        )}
+        {!isLoading() && (
           <div className={classes.header}>
             <h2>{getMovieName()}</h2>
             <div>
@@ -125,7 +123,7 @@ const MovieShowPage = () => {
             {data.runtime && <h3>{convertToHoursAndMin(data.runtime)}</h3>}
           </div>
         )}
-        {checkLoaded() && (
+        {!isLoading() && (
           <div className={classes.content}>
             <div className={classes.posterAndTrailer}>
               {data.poster_path && (
