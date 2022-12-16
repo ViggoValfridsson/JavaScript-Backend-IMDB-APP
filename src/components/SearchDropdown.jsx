@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import DropdownItem from "./DropdownItem";
 import classes from "./SearchDropdown.module.css";
@@ -8,13 +7,7 @@ const SearchDropdown = ({ searchQuery }) => {
     `https://api.themoviedb.org/3/search/movie?api_key=f7f5e53209dd58bafcd025bff2a1e966&query=${searchQuery}&page=1&include_adult=false`
   );
 
-  if (!data || !data.results.length > 0) {
-    console.log("no data"); // Remove later
-    return;
-  }
-
-  if (error) {
-    console.log("error"); // Remove later
+  if (!data || !data.results.length > 0 || error) {
     return;
   }
 
@@ -25,10 +18,8 @@ const SearchDropdown = ({ searchQuery }) => {
     }
   }
 
-  console.log(shortenedArray);
-
   return (
-    <div className={classes.dropdownContainer}>
+    <div className={classes.dropdownContainer} aria-label="Autocomplete results">
       {shortenedArray &&
         shortenedArray.map((movie) => {
           return <DropdownItem movie={movie} />;

@@ -28,7 +28,7 @@ const Navbar = () => {
         </Link>
         <nav className={classes.nav}>
           <form onSubmit={handleSubmit}>
-            <div className={classes.searchInputGroup}>
+            <div className={`${classes.searchInputGroup} searchbarContainer`}>
               <input
                 type="text"
                 ref={searchRef}
@@ -40,8 +40,8 @@ const Navbar = () => {
               <button className={classes.iconButton}>
                 <BiSearch className={classes.icon} />
               </button>
+              {searchQuery && <SearchDropdown searchQuery={searchQuery} />}
             </div>
-            {searchQuery && <SearchDropdown searchQuery={searchQuery} />}
           </form>
         </nav>
       </div>
