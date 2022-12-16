@@ -7,11 +7,19 @@ import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { RxDividerVertical } from "react-icons/rx";
 import ErrorMessage from "./ErrorMessage";
 
-const MovieRow = ({ title, url, typeOfMedia }) => {
-  const { data, isPending, error } = useFetch(url);
+const MovieRow = ({ title, url, typeOfMedia, recent }) => {
+  let { data, isPending, error } = useFetch(url);
   const loadingCardAmount = 8;
   const movieRow = useRef();
   let moviePlacement = 0;
+
+  if (recent) {
+    data = {
+      results: JSON.parse(localStorage.getItem("recentlyViewed")),
+    };
+    isPending = false;
+    error = false;
+  }
 
   const getTargetElement = (movies, positionOfTargetElement) => {
     for (const movie of movies) {

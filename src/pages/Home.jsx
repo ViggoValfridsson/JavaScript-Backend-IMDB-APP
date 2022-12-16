@@ -14,7 +14,9 @@ const Home = () => {
         <MovieRow title={"Trending TV shows"} url={trendingShowsUrl} typeOfMedia={"tv"} recent={false} />
         <MovieRow title={"Top rated movies"} url={topRatedUrl} typeOfMedia={"movie"} recent={false} />
         <MovieRow title={"Top rated TV shows"} url={topRatedTVUrl} typeOfMedia={"tv"} recent={false} />
-        <MovieRow title={"Recently viewed"} url={trendingMoviesUrl} typeOfMedia={"movie"} recent={true} />
+        {localStorage.getItem("recentlyViewed") && (
+          <MovieRow title={"Recently viewed"} url={""} typeOfMedia={"movie"} recent={true} />
+        )}
       </div>
     </section>
   );
