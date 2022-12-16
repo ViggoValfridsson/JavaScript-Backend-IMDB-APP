@@ -8,6 +8,7 @@ const SearchDropdown = ({ searchQuery, closeDropdown }) => {
     `https://api.themoviedb.org/3/search/movie?api_key=f7f5e53209dd58bafcd025bff2a1e966&query=${searchQuery}&page=1&include_adult=false`
   );
   const dropdown = useRef();
+  let placement = 0;
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -23,7 +24,7 @@ const SearchDropdown = ({ searchQuery, closeDropdown }) => {
     };
   }, [dropdown, closeDropdown]);
 
-  if (!data || !data.results.length > 0 || error) {
+  if (!data || !data.results.length > 0 || error || isPending) {
     return;
   }
 
@@ -38,7 +39,7 @@ const SearchDropdown = ({ searchQuery, closeDropdown }) => {
     <div className={classes.dropdownContainer} aria-label="Autocomplete results" ref={dropdown}>
       {shortenedArray &&
         shortenedArray.map((movie) => {
-          return <DropdownItem movie={movie} key={movie.id} />;
+          return <DropdownItem movie={movie} key={movie.id} placement={placement++}/>;
         })}
     </div>
   );

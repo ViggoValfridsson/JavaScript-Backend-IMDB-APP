@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import classes from "./DropDownItem.module.css";
 import image_not_found from "../images/image_not_found.png";
 
-const DropdownItem = ({ movie }) => {
+const DropdownItem = ({ movie, placement }) => {
   const getMovieName = () => {
     let name = "";
 
@@ -12,16 +12,33 @@ const DropdownItem = ({ movie }) => {
       name = movie.title;
     }
 
-    if (name.length > 30) {
-      name = name.slice(0, 30) + "...";
+    if (name.length > 25) {
+      name = name.slice(0, 25) + "...";
     }
 
     return name;
   };
 
+  const truncateDescription = (length) => {
+    if (movie.overview.length > length) {
+      return movie.overview.slice(0, length) + "...";
+    }
+
+    return movie.overview;
+  };
+
+  const isFirstChild = () => {
+    if (placement === 0) {
+      return true;
+    }
+    return false;
+  };
+
+  console.log(isFirstChild());
+
   return (
     <Link to={`/media/movie/${movie.id}`}>
-      <article>
+      <article className={`${classes.itemContainer} ${isFirstChild() ? classes.isFirstChild : ""}`}>
         <div className={classes.image}>
           {movie.poster_path && (
             <img
@@ -33,7 +50,9 @@ const DropdownItem = ({ movie }) => {
         </div>
         <div className={classes.content}>
           <h3>{getMovieName()}</h3>
-          <p className={classes.description}>{movie.overview}</p>
+          <p className={`${classes.descriptionSuperShort} ${classes.description}`}>{truncateDescription(15)}</p>
+          <p className={`${classes.descriptionShort} ${classes.description}`}>{truncateDescription(30)}</p>
+          <p className={`${classes.descriptionLong} ${classes.description}`}>{truncateDescription(200)}</p>
         </div>
       </article>
     </Link>
