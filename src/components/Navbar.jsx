@@ -15,6 +15,7 @@ const Navbar = () => {
 
   useEffect(() => {
     closeDropdown();
+    searchRef.current.value = "";
   }, [navigate]);
 
   const handleSubmit = (e) => {
