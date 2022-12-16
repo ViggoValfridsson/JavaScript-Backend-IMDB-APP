@@ -1,11 +1,22 @@
 import classes from "./Navbar.module.css";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
+import SearchDropdown from "./SearchDropdown";
 
 const Navbar = () => {
   const searchRef = useRef();
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const closeDropdown = () => {
+    setSearchQuery("");
+  };
+
+  useEffect(() => {
+    closeDropdown();
+    searchRef.current.value = "";
+  }, [navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +25,7 @@ const Navbar = () => {
       navigate("/");
     } else {
       navigate(`/search/${searchRef.current.value.replace(/\s/g, "_")}`);
-      searchRef.current.value = ""
+      searchRef.current.value = "";
     }
   };
 
@@ -26,11 +37,19 @@ const Navbar = () => {
         </Link>
         <nav className={classes.nav}>
           <form onSubmit={handleSubmit}>
-            <div className={classes.searchInputGroup}>
-              <input type="text" ref={searchRef} className={classes.searchInput} placeholder="Search..." />
+            <div className={`${classes.searchInputGroup} searchbarContainer`}>
+              <input
+                type="text"
+                ref={searchRef}
+                className={classes.searchInput}
+                placeholder="Search..."
+                aria-label="Search for movies/shows"
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
               <button className={classes.iconButton}>
                 <BiSearch className={classes.icon} />
               </button>
+              {searchQuery && <SearchDropdown searchQuery={searchQuery} closeDropdown={closeDropdown} />}
             </div>
           </form>
         </nav>

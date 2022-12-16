@@ -5,15 +5,18 @@
 
 .container__nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
+  row-gap: 1rem;
+  padding: 0.5rem 0;
 }
 
 .logo {
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.1rem 0.8rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--color-bg);
   background-color: var(--color-primary);
   border-radius: 0.5rem;
@@ -24,13 +27,13 @@
 }
 
 .searchInputGroup {
+  position: relative;
   background-color: var(--color-white);
-  width: 95%;
+  width: 100%;
   border: 1px solid var(--color-light);
   float: right;
   height: 2.5rem;
   border-radius: 0.5rem;
-  overflow: hidden;
 }
 
 .searchInput {
@@ -38,11 +41,13 @@
   height: 100%;
   padding: 0 0.5rem;
   font-size: 1.1rem;
+  border-radius: 0.5rem 0 0 0.5rem;
 }
 
 .iconButton {
   height: 100%;
   width: 15%;
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 
@@ -51,6 +56,19 @@
 }
 
 @media (min-width: 600px) {
+  .container__nav {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 0;
+  }
+  .logo {
+    font-size: 2rem;
+  }
+
+  .searchInputGroup {
+    width: 95%;
+  }
+
   .searchInput {
     width: 90%;
   }
