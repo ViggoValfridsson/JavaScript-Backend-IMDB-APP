@@ -34,8 +34,6 @@ const DropdownItem = ({ movie, placement }) => {
     return false;
   };
 
-  console.log(isFirstChild());
-
   return (
     <Link to={`/media/movie/${movie.id}`}>
       <article className={`${classes.itemContainer} ${isFirstChild() ? classes.isFirstChild : ""}`}>

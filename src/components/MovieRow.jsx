@@ -95,7 +95,6 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
           </button>
           <div className={classes.movies} ref={movieRow}>
             {isPending && [...Array(loadingCardAmount)].map((e, i) => <MovieItem typeOfMedia={"loading"} key={i} />)}
-
             {data &&
               data.results.map((movie) => {
                 return (

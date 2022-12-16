@@ -10,10 +10,11 @@ const Home = () => {
   return (
     <section>
       <div className="container">
-        <MovieRow title={"Trending movies"} url={trendingMoviesUrl} typeOfMedia={"movie"} />
-        <MovieRow title={"Trending TV shows"} url={trendingShowsUrl} typeOfMedia={"tv"} />
-        <MovieRow title={"Top rated movies"} url={topRatedUrl} typeOfMedia={"movie"} />
-        <MovieRow title={"Top rated TV shows"} url={topRatedTVUrl} typeOfMedia={"tv"} />
+        <MovieRow title={"Trending movies"} url={trendingMoviesUrl} typeOfMedia={"movie"} recent={false} />
+        <MovieRow title={"Trending TV shows"} url={trendingShowsUrl} typeOfMedia={"tv"} recent={false} />
+        <MovieRow title={"Top rated movies"} url={topRatedUrl} typeOfMedia={"movie"} recent={false} />
+        <MovieRow title={"Top rated TV shows"} url={topRatedTVUrl} typeOfMedia={"tv"} recent={false} />
+        <MovieRow title={"Recently viewed"} url={trendingMoviesUrl} typeOfMedia={"movie"} recent={true} />
       </div>
     </section>
   );
