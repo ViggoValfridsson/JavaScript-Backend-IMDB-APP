@@ -1,5 +1,5 @@
 import classes from "./Navbar.module.css";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 import SearchDropdown from "./SearchDropdown";
@@ -8,6 +8,14 @@ const Navbar = () => {
   const searchRef = useRef();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+
+  const closeDropdown = () => {
+    setSearchQuery("");
+  };
+
+  useEffect(() => {
+    closeDropdown();
+  }, [navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +48,7 @@ const Navbar = () => {
               <button className={classes.iconButton}>
                 <BiSearch className={classes.icon} />
               </button>
-              {searchQuery && <SearchDropdown searchQuery={searchQuery} />}
+              {searchQuery && <SearchDropdown searchQuery={searchQuery} closeDropdown={closeDropdown} />}
             </div>
           </form>
         </nav>

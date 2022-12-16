@@ -1,5 +1,8 @@
 .dropdownContainer {
-  background-color: red;
+  background-color: rgba(18, 18, 18, 0.9);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
   border-radius: 0.5rem;
   position: relative;
   width: 100%;
