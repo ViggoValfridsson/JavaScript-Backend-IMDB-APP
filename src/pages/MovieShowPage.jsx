@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import classes from "./MovieShowPage.module.css";
@@ -25,6 +26,36 @@ const MovieShowPage = () => {
   } = useFetch(
     `https://api.themoviedb.org/3/${media}/${id}/videos?api_key=f7f5e53209dd58bafcd025bff2a1e966&language=en-US`
   );
+
+  useEffect(() => {
+    const addToLocalStorage = () => {
+      if (isPending || !data) {
+        return;
+      }
+
+      if (!localStorage.getItem("recentlyViewed")) {
+        const movieArray = [{ ...data, typeOfMedia: media }];
+        localStorage.setItem("recentlyViewed", JSON.stringify(movieArray));
+      } else {
+        const recentlyViewedArray = JSON.parse(localStorage.getItem("recentlyViewed"));
+        const filteredArray = recentlyViewedArray.filter((movie) => movie.id !== data.id);
+
+        filteredArray.unshift({ ...data, typeOfMedia: media });
+
+        let shortenedArray = [];
+
+        for (let i = 0; i < 20; i++) {
+          if (filteredArray[i]) {
+            shortenedArray.push(filteredArray[i]);
+          }
+        }
+
+        localStorage.setItem("recentlyViewed", JSON.stringify(shortenedArray));
+      }
+    };
+
+    addToLocalStorage();
+  }, [isPending, data, media]);
 
   const getMovieName = () => {
     let name = "";

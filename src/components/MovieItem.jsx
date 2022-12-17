@@ -20,7 +20,7 @@ const MovieItem = ({ movie, placement, typeOfMedia, width }) => {
 
     return name;
   };
-  
+
   if (typeOfMedia === "loading") {
     return (
       <Skeleton
@@ -33,8 +33,16 @@ const MovieItem = ({ movie, placement, typeOfMedia, width }) => {
     );
   }
 
+  const getMediaType = () => {
+    let returnType = typeOfMedia;
+    if (movie.typeOfMedia) {
+      returnType = movie.typeOfMedia;
+    }
+    return "/media/" + returnType + "/" + movie.id;
+  };
+
   return (
-    <Link to={"/media/" + typeOfMedia + "/" + movie.id} className={`placement-${placement} ${classes.movieCard}`}>
+    <Link to={getMediaType()} className={`placement-${placement} ${classes.movieCard}`}>
       <article>
         <div className={classes.image}>
           {movie.poster_path && (

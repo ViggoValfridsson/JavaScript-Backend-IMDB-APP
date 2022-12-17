@@ -1,14 +1,12 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import MovieItem from "./MovieItem";
-import useFetch from "../hooks/useFetch";
 import classes from "./MovieRow.module.css";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { RxDividerVertical } from "react-icons/rx";
 import ErrorMessage from "./ErrorMessage";
 
-const MovieRow = ({ title, url, typeOfMedia }) => {
-  const { data, isPending, error } = useFetch(url);
+const MovieRow = ({ title, typeOfMedia, data, isPending, error }) => {
   const loadingCardAmount = 8;
   const movieRow = useRef();
   let moviePlacement = 0;
@@ -95,7 +93,6 @@ const MovieRow = ({ title, url, typeOfMedia }) => {
           </button>
           <div className={classes.movies} ref={movieRow}>
             {isPending && [...Array(loadingCardAmount)].map((e, i) => <MovieItem typeOfMedia={"loading"} key={i} />)}
-
             {data &&
               data.results.map((movie) => {
                 return (
