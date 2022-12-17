@@ -1,12 +1,26 @@
 import { useParams } from "react-router-dom";
 import classes from "./Search.module.css";
 import MovieRow from "../components/MovieRow";
+import useFetch from "../hooks/useFetch";
 
 const Search = () => {
   let { query } = useParams();
   query = query.replace(/_/g, " ");
-  const movieSearchUrl = `https://api.themoviedb.org/3/search/movie?api_key=f7f5e53209dd58bafcd025bff2a1e966&query=${query}&page=1&include_adult=false`;
-  const tvSearchUrl = `https://api.themoviedb.org/3/search/tv?api_key=f7f5e53209dd58bafcd025bff2a1e966&query=${query}&page=1&include_adult=false`;
+  const {
+    data: movieSearchData,
+    isPending: movieSearchPending,
+    error: movieSearchError,
+  } = useFetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=f7f5e53209dd58bafcd025bff2a1e966&query=${query}&page=1&include_adult=false`
+  );
+
+  const {
+    data: tvSearchData,
+    isPending: tvSearchPending,
+    error: tvSearchError,
+  } = useFetch(
+    `https://api.themoviedb.org/3/search/tv?api_key=f7f5e53209dd58bafcd025bff2a1e966&query=${query}&page=1&include_adult=false`
+  );
 
   return (
     <section>
@@ -15,10 +29,22 @@ const Search = () => {
           <h2>{`Search "${query}"`}</h2>
         </div>
         <div className={classes.result}>
-          <MovieRow title={"Movie results: "} url={movieSearchUrl} typeOfMedia={"movie"} />
+          <MovieRow
+            title={"Movie results: "}
+            data={movieSearchData}
+            isPending={movieSearchPending}
+            error={movieSearchError}
+            typeOfMedia={"movie"}
+          />
         </div>
         <div className={classes.result}>
-          <MovieRow title={"TV show results:"} url={tvSearchUrl} typeOfMedia={"tv"} />
+          <MovieRow
+            title={"TV show results:"}
+            data={tvSearchData}
+            isPending={tvSearchPending}
+            error={tvSearchError}
+            typeOfMedia={"tv"}
+          />
         </div>
       </div>
     </section>
