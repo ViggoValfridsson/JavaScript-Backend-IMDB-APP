@@ -30,7 +30,6 @@ const MovieShowPage = () => {
   useEffect(() => {
     const addToLocalStorage = () => {
       if (isPending || !data) {
-        console.log("Loading");
         return;
       }
 
@@ -56,7 +55,7 @@ const MovieShowPage = () => {
     };
 
     addToLocalStorage();
-  }, [isPending, data]);
+  }, [isPending, data, media]);
 
   const getMovieName = () => {
     let name = "";
