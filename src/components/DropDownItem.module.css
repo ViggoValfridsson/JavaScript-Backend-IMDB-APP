@@ -10,6 +10,7 @@
 
 .image {
   width: 6rem;
+  min-height: 5.8rem;
 }
 
 .content {
@@ -18,7 +19,8 @@
 }
 
 .content h3 {
-  margin-top: 0.3rem;
+  margin-top: 0.6rem;
+  line-height: 1.3rem;
   font-weight: 700;
 }
 
@@ -31,6 +33,10 @@
 }
 
 @media (min-width: 600px) {
+  .content h3 {
+    margin-top: 0.4rem;
+    line-height: 2rem;
+  }
   .descriptionSuperShort {
     display: none;
   }
