@@ -131,7 +131,6 @@
   font-weight: 300;
 }
 
-/* Tablet */
 @media (min-width: 600px) {
   .errorContainer {
     margin-top: 5rem;
@@ -187,6 +186,3 @@
   }
 }
 
-/* Desktop */
-@media (min-width: 1024px) {
-}
