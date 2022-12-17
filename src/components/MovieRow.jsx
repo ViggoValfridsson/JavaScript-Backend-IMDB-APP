@@ -67,10 +67,10 @@ const MovieRow = ({ title, typeOfMedia, data, isPending, error }) => {
 
   return (
     <div>
-      <Link to={`/${title.replace(/\s/g, "_").toLowerCase()}`} className={classes.headingContainer}>
+      <div className={classes.headingContainer}>
         <RxDividerVertical className={classes.headingIcon} />
         <h2>{title}</h2>
-      </Link>
+      </div>
       {noMoviesFound() && (
         <div className={classes.errorContainer}>
           <h3>Your search gave no results</h3>

@@ -27,11 +27,6 @@
   line-height: 2.5rem;
 }
 
-.headingContainer:hover,
-.headingContainer:focus {
-  border-color: var(--color-primary);
-}
-
 .headingIcon {
   font-size: 2.5rem;
   color: var(--color-primary);
