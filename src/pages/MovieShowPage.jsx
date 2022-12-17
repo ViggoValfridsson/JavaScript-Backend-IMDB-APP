@@ -157,7 +157,7 @@ const MovieShowPage = () => {
                 </div>
               </div>
             </div>
-            {data.runtime && <h3>{convertToHoursAndMin(data.runtime)}</h3>}
+            {(data.runtime || data.runtime === 0) && <h3>{convertToHoursAndMin(data.runtime)}</h3>}
           </div>
         )}
         {!isLoading() && !errorHasOccured() && (

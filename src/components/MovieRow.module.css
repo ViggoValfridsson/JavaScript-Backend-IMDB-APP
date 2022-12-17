@@ -27,11 +27,6 @@
   line-height: 2.5rem;
 }
 
-.headingContainer:hover,
-.headingContainer:focus {
-  border-color: var(--color-primary);
-}
-
 .headingIcon {
   font-size: 2.5rem;
   color: var(--color-primary);
@@ -88,7 +83,6 @@
   font-size: 2rem;
 }
 
-/* Tablet */
 @media (min-width: 600px) {
   .headingContainer {
     padding-left: 0rem;
@@ -110,7 +104,6 @@
   }
 }
 
-/* Desktop */
 @media (min-width: 1224px) {
   .movies {
     grid-auto-columns: 19%;
