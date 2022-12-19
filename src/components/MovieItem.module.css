@@ -8,6 +8,11 @@
   background-color: var(--color-bg-variant);
 }
 
+.movieCard:focus-visible {
+  outline: 2px solid highlight;
+  outline-offset: -2px;
+}
+
 .loadingCard {
   border-radius: 1rem;
 }
