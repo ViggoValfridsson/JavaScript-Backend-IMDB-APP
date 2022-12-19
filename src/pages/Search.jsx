@@ -4,6 +4,7 @@ import MovieRow from "../components/MovieRow";
 import useFetch from "../hooks/useFetch";
 
 const Search = () => {
+  const apiKey = process.env.REACT_APP_API_KEY;
   let { query } = useParams();
   query = query.replace(/_/g, " ");
   const {
@@ -11,7 +12,7 @@ const Search = () => {
     isPending: movieSearchPending,
     error: movieSearchError,
   } = useFetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=f7f5e53209dd58bafcd025bff2a1e966&query=${query}&page=1&include_adult=false`
+    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&page=1&include_adult=false`
   );
 
   const {
@@ -19,7 +20,7 @@ const Search = () => {
     isPending: tvSearchPending,
     error: tvSearchError,
   } = useFetch(
-    `https://api.themoviedb.org/3/search/tv?api_key=f7f5e53209dd58bafcd025bff2a1e966&query=${query}&page=1&include_adult=false`
+    `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&page=1&include_adult=false`
   );
 
   return (

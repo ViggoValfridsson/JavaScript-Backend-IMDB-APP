@@ -6,6 +6,8 @@
 
 - To build the app for production run "npm run build"
 
+- Ask me and I will send the .env.local file
+
 ## Functionality
 
 - The home page contains rows of movies/TV shows. After clicking a movie/TV show item it will be stored in localStorage and shown in the recently viewed row (recently viewed row is hidden until you have viewed at least one movie/TV show).

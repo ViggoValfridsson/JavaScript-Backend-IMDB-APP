@@ -8,24 +8,20 @@ import image_not_found from "../images/image_not_found.png";
 import ErrorMessage from "../components/ErrorMessage";
 
 const MovieShowPage = () => {
+  const apiKey = process.env.REACT_APP_API_KEY;
+
   const { media, id } = useParams();
-  const { data, isPending, error } = useFetch(
-    `https://api.themoviedb.org/3/${media}/${id}?api_key=f7f5e53209dd58bafcd025bff2a1e966`
-  );
+  const { data, isPending, error } = useFetch(`https://api.themoviedb.org/3/${media}/${id}?api_key=${apiKey}`);
   const {
     data: credits,
     isPending: creditsIsPending,
     error: creditsError,
-  } = useFetch(
-    ` https://api.themoviedb.org/3/${media}/${id}/credits?api_key=f7f5e53209dd58bafcd025bff2a1e966&language=en-US`
-  );
+  } = useFetch(` https://api.themoviedb.org/3/${media}/${id}/credits?api_key=${apiKey}&language=en-US`);
   const {
     data: trailers,
     isPending: trailerIsPending,
     error: trailerError,
-  } = useFetch(
-    `https://api.themoviedb.org/3/${media}/${id}/videos?api_key=f7f5e53209dd58bafcd025bff2a1e966&language=en-US`
-  );
+  } = useFetch(`https://api.themoviedb.org/3/${media}/${id}/videos?api_key=${apiKey}&language=en-US`);
 
   useEffect(() => {
     const addToLocalStorage = () => {
