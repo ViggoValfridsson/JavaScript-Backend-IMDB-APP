@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import classes from "./App.module.css";
 import MovieShowPage from "./pages/MovieShowPage";
 import Search from "./pages/Search";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/media/:media/:id" element={<MovieShowPage />} />
               <Route path="/search/:query" element={<Search />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </main>
           <Footer />

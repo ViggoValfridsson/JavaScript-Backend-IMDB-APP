@@ -103,7 +103,6 @@ img {
   object-fit: cover;
 }
 
-/* Tablet */
 @media (min-width: 600px) {
   .container {
     width: var(--container-width-md);
@@ -114,7 +113,6 @@ img {
   }
 }
 
-/* Desktop */
 @media (min-width: 1024px) {
   .container {
     width: var(--container-width-lg);
