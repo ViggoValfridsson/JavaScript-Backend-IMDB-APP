@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <header className={classes.header}>
       <div className={`container ${classes.container__nav}`}>
-        <Link to="/">
+        <Link to="/" className={classes.logoAnchor}>
           <h1 className={classes.logo}>VMDb</h1>
         </Link>
         <nav className={classes.nav}>
