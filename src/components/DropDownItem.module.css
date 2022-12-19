@@ -2,6 +2,17 @@
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   display: flex;
   gap: 1rem;
+  transition: var(--transition);
+}
+
+.itemContainer:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.itemContainer:focus-visible {
+  background-color: rgba(0, 0, 0, 0.8);
+  outline: 2px solid highlight;
+  outline-offset: -2px;
 }
 
 .isFirstChild {

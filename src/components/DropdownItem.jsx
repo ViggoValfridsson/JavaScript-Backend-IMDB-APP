@@ -35,24 +35,25 @@ const DropdownItem = ({ movie, placement }) => {
   };
 
   return (
-    <Link to={`/media/movie/${movie.id}`}>
-      <article className={`${classes.itemContainer} ${isFirstChild() ? classes.isFirstChild : ""}`}>
-        <div className={classes.image}>
-          {movie.poster_path && (
-            <img
-              src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`}
-              alt={"Poster for " + getMovieName()}
-            />
-          )}
-          {!movie.poster_path && <img src={image_not_found} alt={"Could not find poster for " + getMovieName()} />}
-        </div>
-        <div className={classes.content}>
-          <h3>{getMovieName()}</h3>
-          <p className={`${classes.descriptionSuperShort} ${classes.description}`}>{truncateDescription(15)}</p>
-          <p className={`${classes.descriptionShort} ${classes.description}`}>{truncateDescription(30)}</p>
-          <p className={`${classes.descriptionLong} ${classes.description}`}>{truncateDescription(200)}</p>
-        </div>
-      </article>
+    <Link
+      to={`/media/movie/${movie.id}`}
+      className={`${classes.itemContainer} ${isFirstChild() ? classes.isFirstChild : ""}`}
+    >
+      <div className={classes.image}>
+        {movie.poster_path && (
+          <img
+            src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`}
+            alt={"Poster for " + getMovieName()}
+          />
+        )}
+        {!movie.poster_path && <img src={image_not_found} alt={"Could not find poster for " + getMovieName()} />}
+      </div>
+      <div className={classes.content}>
+        <h3>{getMovieName()}</h3>
+        <p className={`${classes.descriptionSuperShort} ${classes.description}`}>{truncateDescription(15)}</p>
+        <p className={`${classes.descriptionShort} ${classes.description}`}>{truncateDescription(30)}</p>
+        <p className={`${classes.descriptionLong} ${classes.description}`}>{truncateDescription(200)}</p>
+      </div>
     </Link>
   );
 };

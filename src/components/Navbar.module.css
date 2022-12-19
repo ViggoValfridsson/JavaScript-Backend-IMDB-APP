@@ -22,6 +22,11 @@
   border-radius: 0.5rem;
 }
 
+.logoAnchor:focus-visible {
+  outline: 2px solid highlight;
+  border-radius: 0.5rem;
+}
+
 .nav {
   width: 100%;
 }
@@ -37,6 +42,7 @@
 }
 
 .searchInput {
+  position: relative;
   width: 85%;
   height: 100%;
   padding: 0 0.5rem;
@@ -44,11 +50,21 @@
   border-radius: 0.5rem 0 0 0.5rem;
 }
 
+.searchInput:focus-visible {
+  outline: 2px solid highlight;
+  z-index: 1;
+}
+
 .iconButton {
   height: 100%;
   width: 15%;
-  border-radius: 0.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
   overflow: hidden;
+}
+
+.iconButton:focus-visible {
+  outline: 2px solid highlight;
+  z-index: 2;
 }
 
 .icon {
