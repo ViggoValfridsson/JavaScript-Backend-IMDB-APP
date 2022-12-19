@@ -4,8 +4,10 @@ import DropdownItem from "./DropdownItem";
 import classes from "./SearchDropdown.module.css";
 
 const SearchDropdown = ({ searchQuery, closeDropdown }) => {
+  const apiKey = process.env.REACT_APP_API_KEY;
+
   const { data, isPending, error } = useFetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=f7f5e53209dd58bafcd025bff2a1e966&query=${searchQuery}&page=1&include_adult=false`
+    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}&page=1&include_adult=false`
   );
   const dropdown = useRef();
   let placement = 0;
