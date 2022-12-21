@@ -24,7 +24,7 @@ const Navbar = () => {
     if (!searchRef.current.value) {
       navigate("/");
     } else {
-      navigate(`/search/${searchRef.current.value.replace(/\s/g, "_")}`);
+      navigate(`/search/${encodeURIComponent(searchRef.current.value)}`);
       searchRef.current.value = "";
     }
   };
@@ -44,7 +44,7 @@ const Navbar = () => {
                 className={classes.searchInput}
                 placeholder="Search..."
                 aria-label="Search for movies/shows"
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => setSearchQuery(encodeURIComponent(e.target.value))}
               />
               <button className={classes.iconButton}>
                 <BiSearch className={classes.icon} />
