@@ -5,12 +5,12 @@ import classes from "./SearchDropdown.module.css";
 
 const SearchDropdown = ({ searchQuery, closeDropdown }) => {
   const apiKey = process.env.REACT_APP_API_KEY;
-
   const { data, isPending, error } = useFetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}&page=1&include_adult=false`
   );
   const dropdown = useRef();
   let placement = 0;
+  let resultArray = [];
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -30,18 +30,17 @@ const SearchDropdown = ({ searchQuery, closeDropdown }) => {
     return;
   }
 
-  let shortenedArray = [];
   for (let i = 0; i < 5; i++) {
     if (data.results[i]) {
-      shortenedArray.push(data.results[i]);
+      resultArray.push(data.results[i]);
     }
   }
 
   return (
     <div className={classes.dropdownContainer} aria-label="Autocomplete results" ref={dropdown}>
-      {shortenedArray &&
-        shortenedArray.map((movie) => {
-          return <DropdownItem movie={movie} key={movie.id} placement={placement++}/>;
+      {resultArray &&
+        resultArray.map((movie) => {
+          return <DropdownItem movie={movie} key={movie.id} placement={placement++} />;
         })}
     </div>
   );

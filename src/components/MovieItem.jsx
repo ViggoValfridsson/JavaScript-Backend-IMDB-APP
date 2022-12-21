@@ -35,9 +35,11 @@ const MovieItem = ({ movie, placement, typeOfMedia, width }) => {
 
   const getMediaType = () => {
     let returnType = typeOfMedia;
+
     if (movie.typeOfMedia) {
       returnType = movie.typeOfMedia;
     }
+    
     return "/media/" + returnType + "/" + movie.id;
   };
 
