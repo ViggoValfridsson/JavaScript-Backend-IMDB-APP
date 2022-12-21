@@ -1,5 +1,9 @@
 # IMDB clone
 
+## Preview the site
+
+- Netlify link: https://viggo-movie-database.netlify.app/media/movie/550
+
 ## How to use
 
 - Use "npm start" to run a development build of the website on http://localhost:3000.
