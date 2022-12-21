@@ -7,6 +7,7 @@ const Search = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
   let { query } = useParams();
   query = encodeURIComponent(query);
+
   const {
     data: movieSearchData,
     isPending: movieSearchPending,
@@ -27,7 +28,7 @@ const Search = () => {
         </div>
         <div className={classes.result}>
           <MovieRow
-            title={"Movie results: "}
+            title={"Movie results:"}
             data={movieSearchData}
             isPending={movieSearchPending}
             error={movieSearchError}

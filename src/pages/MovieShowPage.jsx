@@ -9,7 +9,6 @@ import ErrorMessage from "../components/ErrorMessage";
 
 const MovieShowPage = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
-
   const { media, id } = useParams();
   const { data, isPending, error } = useFetch(`https://api.themoviedb.org/3/${media}/${id}?api_key=${apiKey}`);
   const {
@@ -17,6 +16,7 @@ const MovieShowPage = () => {
     isPending: creditsIsPending,
     error: creditsError,
   } = useFetch(` https://api.themoviedb.org/3/${media}/${id}/credits?api_key=${apiKey}&language=en-US`);
+
   const {
     data: trailers,
     isPending: trailerIsPending,
@@ -71,7 +71,7 @@ const MovieShowPage = () => {
     if (!director) {
       return "";
     }
-
+    
     return director.name;
   };
 
@@ -79,6 +79,7 @@ const MovieShowPage = () => {
     if (a.cast_id < b.cast_id) {
       return -1;
     }
+
     if (b.cast_id > a.cast_id) {
       return 1;
     }
@@ -118,6 +119,7 @@ const MovieShowPage = () => {
     if (isPending || creditsIsPending || trailerIsPending) {
       return true;
     }
+
     return false;
   };
 
@@ -125,6 +127,7 @@ const MovieShowPage = () => {
     if (error || creditsError || trailerError) {
       return true;
     }
+    
     return false;
   };
 

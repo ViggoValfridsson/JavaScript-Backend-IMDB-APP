@@ -31,6 +31,7 @@ const DropdownItem = ({ movie, placement }) => {
     if (placement === 0) {
       return true;
     }
+
     return false;
   };
 

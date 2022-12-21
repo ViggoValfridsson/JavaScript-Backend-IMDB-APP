@@ -25,6 +25,7 @@ const MovieRow = ({ title, typeOfMedia, data, isPending, error }) => {
     if (!data) {
       return;
     }
+    
     const columnWidth = movieRow.current.scrollWidth / data.results.length;
     const currentColumn = Math.round(movieRow.current.scrollLeft / columnWidth);
     const amountOfVisibleMovies = Math.round(movieRow.current.getBoundingClientRect().width / columnWidth);
