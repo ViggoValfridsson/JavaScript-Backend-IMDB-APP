@@ -2,7 +2,7 @@
 
 ## Preview the site
 
-- Netlify link: https://viggo-movie-database.netlify.app/media/movie/550
+- Netlify link: https://viggo-movie-database.netlify.app
 
 ## How to use
 
