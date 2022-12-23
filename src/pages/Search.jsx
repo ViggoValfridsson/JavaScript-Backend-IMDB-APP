@@ -13,7 +13,6 @@ const Search = () => {
     isPending: movieSearchPending,
     error: movieSearchError,
   } = useFetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&page=1&include_adult=false`);
-
   const {
     data: tvSearchData,
     isPending: tvSearchPending,

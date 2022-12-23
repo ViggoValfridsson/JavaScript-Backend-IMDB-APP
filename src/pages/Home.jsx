@@ -3,7 +3,6 @@ import useFetch from "../hooks/useFetch";
 
 const Home = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
-
   const {
     data: trendingMovieData,
     isPending: trendingMoviePending,
@@ -21,13 +20,11 @@ const Home = () => {
   } = useFetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&vote_count.gte=5000&with_watch_monetization_types=flatrate`
   );
-
   const {
     data: topTvData,
     isPending: topTvPending,
     error: topTvError,
   } = useFetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}&page=1`);
-
   const recentlyViewedData = {
     results: JSON.parse(localStorage.getItem("recentlyViewed")),
   };
