@@ -16,7 +16,6 @@ const MovieShowPage = () => {
     isPending: creditsIsPending,
     error: creditsError,
   } = useFetch(` https://api.themoviedb.org/3/${media}/${id}/credits?api_key=${apiKey}&language=en-US`);
-
   const {
     data: trailers,
     isPending: trailerIsPending,
